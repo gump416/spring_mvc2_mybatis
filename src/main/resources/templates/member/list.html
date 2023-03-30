@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<h2>회원 목록</h2>
+<table border="1">
+	<tr><th>번호</th><th>아이디</th><th>이름</th><th>이메일</th><th>나이</th></tr>
+    <tr th:each="member, loopStat : ${members}"> <!-- /* loopStat순번이다 */ -->
+      <td th:text="${loopStat.count}">1</td>
+      <td>
+        <a href="hong@gmail.com" th:text="${member.memberId}"  th:href="@{/springmvc/members/{user-id}(user-id=${member.memberId})}">hong</a> 
+      </td>
+      <td th:text="${member.name}">홍길동</td>
+      <td th:text="${member.email}">hong@gmail.com</td>
+      <td th:text="${member.age}">10</td>
+    </tr>
+</table>
+</body>
+</html>
+<!-- /*타임리프 테스트는 브라우저로함 나머지는 junit, 값넘길때 파라미터말고 패스벨리어블로 설정해서 넘겨줘야함 */ -->
+<!-- /* @{/springmvc/members/{user-id}(user-id=${member.memberId})} 는 pathvariable임, 전형적인 restpool 브라우저에서 아이디에 커서 올리면 밑에 url에 uri바뀌는거 확인해보기, 중요!!!!!*/ -->
+<!-- /* 네츄럴 템블릿:디자이너가 만들어온 html이 브라우저로 실행하면 그대로나오면서 서버로실행하면 백엔드개발자가 덮어씌운값들이 나오게하는방식*/ -->
